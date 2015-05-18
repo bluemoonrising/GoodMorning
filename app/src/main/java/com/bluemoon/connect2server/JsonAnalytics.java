@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class JsonAnalytics {
     final static private String NAME = "name";
+    final static private String SEC = "sec";
     final static private String TIME = "time";
-    final static private String POINT = "point";
 
     static public List<RankData> analysisSearchResult(JSONArray result)
     {
@@ -36,19 +36,19 @@ public class JsonAnalytics {
     static private RankData analysisEntry(JSONObject item)
     {
         String name = "";
-        double time = 0.;
-        int point = 0;
+        double sec = 0.;
+        String time = "";
 
         try {
             name = item.getString(NAME);
-            time = item.getDouble(TIME);
-            point = item.getInt(POINT);
+            sec = item.getDouble(SEC);
+            time = item.getString(TIME);
         } catch (JSONException e) {
             // TODO 自動生成された catch ブロック
             e.printStackTrace();
         }
 
-        return new RankData(name, time, point);
+        return new RankData(name, sec, time);
     }
 
 

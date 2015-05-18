@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     AsyncHttpClient client = new AsyncHttpClient();
     String uri = "http://goodmorningphp.mybluemix.net/";
-    ListView listView;
+    ListView daylistView,toplistview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,8 @@ public class MainActivity extends Activity {
         //login("Kazuki","red");
         //addUser("User", "Pass");
 
-        listView = (ListView)findViewById(R.id.rankListView);
+        daylistView = (ListView)findViewById(R.id.rankListView);
+        toplistview = (ListView)findViewById(R.id.topRankListView);
 
         getRank();
     }
@@ -87,8 +88,10 @@ public class MainActivity extends Activity {
                 }
 
                 List<RankData> list = JsonAnalytics.analysisSearchResult(jsonArray);
-                RankAdapter rankAdapter = new RankAdapter(getBaseContext(),0,list);
-                listView.setAdapter(rankAdapter);
+                RankAdapter rankAdapter = new RankAdapter(getBaseContext(),0,RankData.TodayRank(list));
+                daylistView.setAdapter(rankAdapter);
+                TotalRankAdapter totalRankAdapter = new TotalRankAdapter(getBaseContext(),0,TotalRankData.RankToTotal(list));
+                toplistview.setAdapter(totalRankAdapter);
             }
 
             @Override

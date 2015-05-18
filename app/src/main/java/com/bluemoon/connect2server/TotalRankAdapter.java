@@ -12,7 +12,8 @@ import java.util.List;
 /**
  * Created by skybl_000 on 2015/05/18.
  */
-public class RankAdapter extends ArrayAdapter<RankData> {
+
+public class TotalRankAdapter extends ArrayAdapter<TotalRankData> {
     static class ViewHolder {
         TextView nameTextView;
         TextView timeTextView;
@@ -20,7 +21,7 @@ public class RankAdapter extends ArrayAdapter<RankData> {
 
     private LayoutInflater inflater;
 
-    public RankAdapter(Context context, int resource, List<RankData> objects) {
+    public TotalRankAdapter(Context context, int resource, List<TotalRankData> objects) {
         super(context, resource, objects);
         // TODO 自動生成されたコンストラクター・スタブ
     }
@@ -46,9 +47,9 @@ public class RankAdapter extends ArrayAdapter<RankData> {
 
         // 特定の行のデータを取得
 
-        RankData item = getItem(position);
+        TotalRankData item = getItem(position);
         holder.nameTextView.setText((position + 1)+"位 名前"+item.getName());
-        holder.timeTextView.setText(String.valueOf(item.getTime()+"秒")); //setTextにint型を渡すとResources$NotFoundException
+        holder.timeTextView.setText(String.valueOf(item.getPoint()+"ポイント")); //setTextにint型を渡すとResources$NotFoundException
 
         return view;
 
